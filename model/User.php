@@ -3,7 +3,7 @@
 class User
 {
 	private $_uid;
-	private $_titre;
+	private $_nom;
 	private $_prenom;
 	private $_login;
 	private $_mdp;
@@ -30,7 +30,7 @@ class User
 	//Getters
 
 	public function uid() { return $this->_uid; }
-	public function titre() { return $this->_titre; }
+	public function nom() { return $this->_nom; }
 	public function prenom() { return $this->_prenom; }
 	public function login() { return $this->_login; }
 	public function mdp() { return $this->_mdp; }
@@ -49,11 +49,11 @@ class User
 		}
 	}
 
-	public function setTitre($titre)
+	public function setNom($nom)
 	{
-		if(is_string($titre))
+		if(is_string($nom))
 		{
-			$this->_titre = $titre;
+			$this->_nom = $nom;
 		}
 	}
 

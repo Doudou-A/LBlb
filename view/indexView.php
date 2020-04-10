@@ -1,6 +1,14 @@
-<?php ob_start(); ?>
+<?php ob_start(); 
+session_start();
+?>
+<?php if (isset($_SESSION['prenom'])) {?>
+	<h1>T'es Connecté Bravooo</h1>;
+<?php } ?>
 
-<a class="btn btn-outline-success my-2 my-sm-0 bg-primary" href="index.php?action=test">Changement de vue</a>
+<a class="btn my-2 my-sm-0 text-success" href="index.php?action=inscriptionView">ّInscription</a>
+<a class="btn my-2 my-sm-0 text-success" href="index.php?action=connexionView">connexion</a>
+<a class="btn my-2 my-sm-0 text-success" href="index.php?action=destroy">deconnexion</a>
+
 
 <?php $content = ob_get_clean(); ?>
 

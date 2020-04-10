@@ -7,7 +7,7 @@ spl_autoload_register(function ($class_name) {
 
 //Routeur
 try {
-	$controller = new TestController;
+	$controller = new SecurityController;
 	if (!empty($_GET['action'])) {
 		$action = $_GET['action'];
 		if (method_exists($controller, $action)) {
