@@ -1,6 +1,6 @@
 <?php
 
-require_once('Config.php');
+require_once('db_config.php');
 require('Projet.php');
 
 class ProjetManager
@@ -26,6 +26,18 @@ class ProjetManager
 		$query->execute();
 	} 
 	
+	public function get($id)
+	{
+		$id = (int) $id;
+		$query = $this->_db->prepare('SELECT * FROM projets WHERE pid = :id');
+		$query->bindValue(':id', $id, PDO::PARAM_INT);
+		$query->execute();
+
+		$data = $query->fetch(PDO::FETCH_ASSOC);
+
+		return new Projet($data);
+	}
+
 	public function getProjets()
 	{
 		$projetspublish=[];

@@ -9,13 +9,14 @@ require('adminAccess.php'); ?>
 		<form action="index.php?action=ajouterGroupe" id="formRegistration" method="POST">
 			<div class="row col-12 p-0 m-0">
 				<div class="row p-0 m-0 col-12">
-                <label class="col-lg-12 mt-4 animated fadeInRight">Auteur :</label>
-		    	<select id="monselect" class="col-lg-12 p-2 border animated fadeInLeft" name="pid">
-				 <?php foreach ($projets as $key => $projet) :?>
-				  <option value="<?=$projet->pid();?>"><?=$projet->titre();?> / Du <?=$projet->dateDebut();?> au <?=$projet->dateFin();?></option>
-				<?php endforeach ?>	
-                </select> 
-                <input id="submitFormRegistration" type="submit" name="valide" value="Valider" class="btn border-secondary col-6 offset-3 mt-4 animated fadeInRight rounded text-white" />
+					<label class="col-lg-12 mt-4 animated fadeInRight">Projet existant:</label>
+					<select id="monselect" class="col-lg-12 p-2 border animated fadeInLeft" name="pid">
+						<?php foreach ($projets as $key => $projet) : ?>
+							<option value="<?= $projet->pid(); ?>"><?= $projet->titre(); ?> / Du <?= $projet->dateDebut(); ?> au <?= $projet->dateFin(); ?></option>
+						<?php endforeach ?>
+					</select>
+					<input id="submitFormRegistration" type="submit" name="valide" value="Valider" class="btn border-secondary col-6 offset-3 mt-4 animated fadeInRight rounded text-white" />
+				</div>
 			</div>
 		</form>
 </div>

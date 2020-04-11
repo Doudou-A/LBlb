@@ -1,4 +1,8 @@
-<?php ob_start(); ?>
+<?php 
+session_start();
+ob_start(); 
+require('adminAccess.php');?>
+
 <?php if (isset($_SESSION['prenom'])) {?>
 	<h3><?= $_SESSION['role']?> <?=$_SESSION['nom']?> <?=$_SESSION['prenom']?></h3>;
 <?php } ?>
@@ -8,6 +12,10 @@
 <a class="btn my-2 my-sm-0 text-success" href="index.php?action=destroy">deconnexion</a>
 <a class="btn my-2 my-sm-0 text-success" href="index.php?action=ajouterProjetView">Créer un projet</a>
 <a class="btn my-2 my-sm-0 text-success" href="index.php?action=ajouterGroupeView">Ajouter un groupe</a>
+<a class="btn my-2 my-sm-0 text-success" href="index.php?action=creerAssociationView">Creer une association</a>
+<a class="btn my-2 my-sm-0 text-success" href="index.php?action=creerDemandeView">Creer une demande</a>
+<a class="btn my-2 my-sm-0 text-success" href="index.php?action=ajouterChoixView">Ajouter un choix</a>
+<a class="btn my-2 my-sm-0 text-success" href="index.php?action=creerAffectationView">Creer une affectation</a>
 
 
 <?php $content = ob_get_clean(); ?>

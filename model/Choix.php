@@ -2,7 +2,7 @@
 
 class Choix
 {
-    private $_gid;
+    private $_cid;
     private $_nom;
 	private $_pid;
 
@@ -24,19 +24,19 @@ class Choix
 
 	//Getters
 
-    public function gid() { return $this->_gid; }
+    public function cid() { return $this->_cid; }
     public function nom() { return $this->_nom; }
 	public function pid()	{ return $this->_pid;	}
 
 	//Setters
 
-	public function setGid($gid)
+	public function setCid($cid)
 	{
-		$gid = (int) $gid;
+		$cid = (int) $cid;
 
-		if ($gid >0)
+		if ($cid >0)
 		{
-			$this->_gid = $gid;
+			$this->_cid = $cid;
 		}
     }
     

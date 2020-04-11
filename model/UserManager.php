@@ -1,6 +1,6 @@
 <?php
 
-require_once('Config.php');
+require_once('db_config.php');
 require('User.php');
 
 class UserManager
@@ -88,7 +88,7 @@ class UserManager
 	{
 		$userspublish=[];
 
-		$query = $this->_db->query('SELECT * FROM User');
+		$query = $this->_db->query('SELECT * FROM users');
 		$data = $query->fetchAll(\PDO::FETCH_ASSOC);
 
 		for ($i=0; $i< count($data); $i++) 

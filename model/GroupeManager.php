@@ -1,6 +1,6 @@
 <?php
 
-require_once('Config.php');
+require_once('db_config.php');
 require('Groupe.php');
 
 class GroupeManager
@@ -20,6 +20,24 @@ class GroupeManager
 		$query->bindValue(':pid', $groupes->pid(), PDO::PARAM_INT);
 
 		$query->execute();
+	}
+
+	public function getGroupes()
+	{
+		$groupespublish=[];
+		$projet = new ProjetManager;
+
+		$query = $this->_db->query('SELECT * FROM groupes');
+		$data = $query->fetchAll(\PDO::FETCH_ASSOC);
+
+		for ($i=0; $i< count($data); $i++) 
+		{ 
+			$groupe = new Groupe($data[$i]);
+			$groupe->setPid($projet->get($data[$i]["pid"]));
+			array_push($groupespublish, $groupe); 
+		} 
+
+		return $groupespublish;
 	}
 
 	public function setDb(PDO $db)
