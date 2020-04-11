@@ -1,8 +1,8 @@
 <?php
 
-/* spl_autoload_register(function ($class_name) {
+spl_autoload_register(function ($class_name) {
     include 'model/' . $class_name . '.php';
-}); */
+}); 
 include 'model/ProjetManager.php';
 
 class ProjetController
