@@ -7,14 +7,17 @@ spl_autoload_register(function ($class_name) {
 
 //Routeur
 try {
-	$controller = new SecurityController;
+	$controllerFirst = new SecurityController;
+	$controllerSecond = new ProjetController;
 	if (!empty($_GET['action'])) {
 		$action = $_GET['action'];
-		if (method_exists($controller, $action)) {
-		$controller->$action();
+		if (method_exists($controllerFirst, $action)) {
+            $controllerFirst->$action();
+        } elseif (method_exists($controllerSecond, $action)) {
+			$controllerSecond->$action();
 		}
 	} else {
-		$controller->index();
+		$controllerFirst->index();
 	}
 } catch (Exeption $e) {
 	die('Erreur : ' . $e->getMessage());

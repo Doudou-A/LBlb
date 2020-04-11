@@ -1,8 +1,9 @@
 <?php
 
-spl_autoload_register(function ($class_name) {
+/* spl_autoload_register(function ($class_name) {
     include 'model/' . $class_name . '.php';
-});
+}); */
+include 'model/UserManager.php';
 
 class SecurityController 
 {
@@ -32,7 +33,7 @@ class SecurityController
 				$_SESSION['nom'] = htmlspecialchars($user->nom());
 				$_SESSION['prenom'] = htmlspecialchars($user->prenom());	
 				$_SESSION['id'] = $user->uid();
-				//Faille CRSF
+				$_SESSION['role'] = $user->role();
 
 				require('view/indexView.php');
 
