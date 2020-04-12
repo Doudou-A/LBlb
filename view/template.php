@@ -13,9 +13,9 @@
 </head>
 
 <body>
-	<?php if (isset($_SESSION['prenom'])) { ?>
-		<h3><?= $_SESSION['role'] ?> <?= $_SESSION['nom'] ?> <?= $_SESSION['prenom'] ?></h3>;
-	<?php } ?>
+	<?php if (isset($_SESSION['firstName'])) : ?>
+		Utilisateur : <?= $_SESSION['name'] ?> <?= $_SESSION['firstName'] ?>
+	<?php endif ?>
 	<?= $content ?>
 </body>
 

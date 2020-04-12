@@ -1,5 +1,4 @@
 <?php
-
 //Autoloader
 /* spl_autoload_register(function ($class_name) {
 	include 'controller/' . $class_name . '.php';
@@ -13,6 +12,7 @@ include 'controller/AssociationController.php';
 include 'controller/DemandeController.php';
 include 'controller/ChoixController.php';
 include 'controller/AffectationController.php';
+include 'controller/UserController.php';
 //Routeur
 try {
 	$controllerFirst = new SecurityController;
@@ -22,6 +22,8 @@ try {
 	$controllerFive = new DemandeController;
 	$controllerSix = new ChoixController;
 	$controllerSeven = new AffectationController;
+	$controllerEight = new UserController;
+	
 	if (!empty($_GET['action'])) {
 		$action = $_GET['action'];
 		if (method_exists($controllerFirst, $action)) {
@@ -38,6 +40,8 @@ try {
 			$controllerSix->$action();
 		} elseif (method_exists($controllerSeven, $action)) {
 			$controllerSeven->$action();
+		} elseif (method_exists($controllerEight, $action)) {
+			$controllerEight->$action();
 		}
 	} else {
 		$controllerFirst->index();

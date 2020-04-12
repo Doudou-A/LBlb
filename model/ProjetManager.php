@@ -24,7 +24,7 @@ class ProjetManager
         $query->bindValue(':dateFin', $projets->dateFin());
 
 		$query->execute();
-	} 
+	}
 	
 	public function get($id)
 	{
@@ -53,6 +53,21 @@ class ProjetManager
 
 		return $projetspublish;
 	}
+
+	public function update(Projet $projets)
+	{
+		$query = $this->_db->prepare('UPDATE projets SET titre = :titre, description = :description, tailleGroupe = :tailleGroupe, dateDebut = :dateDebut, dateFin = :dateFin  WHERE pid = :pid');
+
+		$query->bindValue(':pid', $projets->pid(), PDO::PARAM_INT);
+		$query->bindValue(':titre', $projets->titre(), PDO::PARAM_STR);
+		$query->bindValue(':description', $projets->description(), PDO::PARAM_STR);
+		$query->bindValue(':tailleGroupe', $projets->tailleGroupe(), PDO::PARAM_INT);
+		$query->bindValue(':dateDebut',$projets->dateDebut());
+        $query->bindValue(':dateFin', $projets->dateFin());
+
+		$query->execute();
+	}
+
 
 	public function setDb(PDO $db)
 	{

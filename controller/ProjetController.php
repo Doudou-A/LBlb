@@ -2,11 +2,19 @@
 
 spl_autoload_register(function ($class_name) {
     include 'model/' . $class_name . '.php';
-}); 
+});
 include 'model/ProjetManager.php';
 
 class ProjetController
 {
+    public function projetAll()
+	{
+		$manager = new projetManager();
+
+		$projets = $manager->getprojets();
+
+		require('view/projetAllView.php');
+	}
 
     public function ajouterProjet()
     {
@@ -39,5 +47,50 @@ class ProjetController
     public function projetGetView()
     {
         require('view/projetGetView.php');
+    }
+
+    public function projetModifier()
+    {
+        $manager = new ProjetManager();
+
+        if ($_POST['dateDebut'] > $_POST['dateFin']) {
+            header("Location: index.php?action=projetModifierView&id=".$_GET['id']."&error=1");
+            exit;
+        } else {
+            $projet = new Projet([
+                'pid' => $_GET['id'],
+                'titre' => $_POST['titre'],
+                'description' =>  $_POST['description'],
+                'tailleGroupe' =>  $_POST['tailleGroupe'],
+                'dateDebut' => $_POST['dateDebut'],
+                'dateFin' => $_POST['dateFin']
+            ]);
+
+            $manager->update($projet);
+
+            header("Location: index.php?action=projetAll");
+            exit;
+        }
+    }
+
+    public function projetModifierView()
+    {
+
+        if (!empty($_GET['id'])) {
+            $manager = new ProjetManager();
+
+            $blogp = $manager->get($_GET['id']);
+
+            $updatePid = $blogp->pid();
+            $updateTitre = $blogp->titre();
+            $updateDescription = $blogp->description();
+            $updateTailleGroupe = $blogp->tailleGroupe();
+            $updateDateDebut = $blogp->dateDebut();
+            $updateDateFin = $blogp->dateFin();
+
+            require('view/projetModifierView.php');
+        } else {
+            throw new Exception("Error Processing Request");
+        }
     }
 }

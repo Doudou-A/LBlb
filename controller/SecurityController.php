@@ -31,7 +31,7 @@ class SecurityController
 
 				$_SESSION['nom'] = htmlspecialchars($user->nom());
 				$_SESSION['prenom'] = htmlspecialchars($user->prenom());	
-				$_SESSION['id'] = $user->uid();
+				$_SESSION['uid'] = $user->uid();
 				$_SESSION['role'] = $user->role();
 
 				require('view/indexView.php');
@@ -50,6 +50,11 @@ class SecurityController
 	public function connexionView()
 	{
 		require('view/connexionView.php');
+	}
+
+	public function dashboard()
+	{
+		require('view/dashboardView.php');
 	}
     
 	//Déconnexion
