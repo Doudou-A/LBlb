@@ -8,13 +8,13 @@ include 'model/ProjetManager.php';
 class ProjetController
 {
     public function projetAll()
-	{
-		$manager = new projetManager();
+    {
+        $manager = new projetManager();
 
-		$projets = $manager->getprojets();
+        $projets = $manager->getprojets();
 
-		require('view/projetAllView.php');
-	}
+        require('view/Projet/projetAllView.php');
+    }
 
     public function ajouterProjet()
     {
@@ -41,12 +41,21 @@ class ProjetController
 
     public function ajouterProjetView()
     {
-        require('view/ajouterProjetView.php');
+        require('view/Projet/ajouterProjetView.php');
     }
 
-    public function projetGetView()
+    public function projetFullView()
     {
-        require('view/projetGetView.php');
+        if (!empty($_GET['id'])) {
+            $id = $_GET['id'];
+            $manager = new projetManager();
+
+            $projet = $manager->get($id);
+
+            require('view/Projet/projetFullView.php');
+        } else {
+            throw new Exception("Error Processing Request");
+        }
     }
 
     public function projetModifier()
@@ -54,7 +63,7 @@ class ProjetController
         $manager = new ProjetManager();
 
         if ($_POST['dateDebut'] > $_POST['dateFin']) {
-            header("Location: index.php?action=projetModifierView&id=".$_GET['id']."&error=1");
+            header("Location: index.php?action=projetModifierView&id=" . $_GET['id'] . "&error=1");
             exit;
         } else {
             $projet = new Projet([
@@ -88,9 +97,28 @@ class ProjetController
             $updateDateDebut = $blogp->dateDebut();
             $updateDateFin = $blogp->dateFin();
 
-            require('view/projetModifierView.php');
+            require('view/Projet/projetModifierView.php');
         } else {
             throw new Exception("Error Processing Request");
         }
+    }
+
+    public function projetUser()
+    {
+        session_start();
+
+        $groupeManager = new groupeManager();
+        $projetManager = new projetManager();
+        $userManager = new userManager();
+        $associationManager = new AssociationManager();
+
+        $uid = $_SESSION['uid'];
+
+        $user = $userManager->get($uid);
+        $association = $associationManager->getByUser($user);
+        $groupe = $groupeManager->getByAssociation($association);
+        $projet = $projetManager->get($groupe->pid());
+        
+        require('view/Projet/projetFullView.php');
     }
 }

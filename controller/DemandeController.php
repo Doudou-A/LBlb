@@ -8,14 +8,14 @@ class DemandeController
 {
 
     public function demandeVue()
-	{
-		$manager = new demandeManager();
+    {
+        $manager = new demandeManager();
 
-		$demandes = $manager->getDemandes();
+        $demandes = $manager->getDemandes();
 
-		require('view/demandeAllView.php');
+        require('view/Demande/demandeAllView.php');
     }
-    
+
     public function creerDemande()
     {
         $manager = new DemandeManager();
@@ -27,9 +27,13 @@ class DemandeController
         ]);
 
         $manager->add($demande);
-
-        header("Location: /index.php?action=creerDemandeView");
-        exit;
+        if ($_GET['demande'] == 1) {
+            header("Location: /index.php?action=demandesUser");
+            exit;
+        } else {
+            header("Location: /index.php?action=demandeVue");
+            exit;
+        }
     }
 
     public function creerDemandeView()
@@ -40,7 +44,21 @@ class DemandeController
         $groupes = $managerg->getGroupes();
         $users = $manageru->getUsers();
 
-        require('view/creerDemandeView.php');
+        require('view/Demande/creerDemandeView.php');
+    }
+
+    public function faireDemandeView()
+    {
+        session_start();
+        $id = $_SESSION['uid'];
+
+        $managerg = new GroupeManager;
+        $manageru = new UserManager;
+
+        $groupes = $managerg->getGroupes();
+        $user = $manageru->get($id);
+
+        require('view/Demande/faireDemandeView.php');
     }
 
     public function demandeModifier()
@@ -90,33 +108,43 @@ class DemandeController
                 $users = $managerp->getUsers();
 
 
-                require('view/demandeModifierView.php');
+                require('view/Demande/demandeModifierView.php');
             }
         } else {
             throw new Exception("Error Processing Request");
         }
     }
 
+    public function demandesUser()
+    {
+        session_start();
+
+        $managerD = new demandeManager();
+        $managerU = new userManager();
+
+        $user = $managerU->get($_SESSION['uid']);
+        $demandes = $managerD->getDemandesUser($user);
+
+        require('view/Demande/demandeUserView.php');
+    }
+
     public function demandeSuppr()
-	{
-		session_start();
+    {
+        session_start();
 
-		if (!empty($_GET['id']) && !empty($_SESSION['prenom']) && $_SESSION['role'] == 'admin') 
-		{
-			$manager = new DemandeManager();
+        if (!empty($_GET['id']) && !empty($_SESSION['prenom']) && $_SESSION['role'] == 'admin') {
+            $manager = new DemandeManager();
 
-			$id = $_GET['id'];
+            $id = $_GET['id'];
 
-			$demande = $manager->get($id);
-			$manager->delete($demande);
+            $demande = $manager->get($id);
+            $manager->delete($demande);
 
-			header("Location: index.php?action=demandeVue");
-			exit;
-		}
-		else
-		{
-			header("Location: index.php");
-			exit;
+            header("Location: index.php?action=demandeVue");
+            exit;
+        } else {
+            header("Location: index.php");
+            exit;
         }
     }
 }

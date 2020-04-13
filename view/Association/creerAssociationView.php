@@ -3,8 +3,7 @@
 <?php 
 ob_start();
 session_start();
-echo($_SESSION['prenom']);
-require('adminAccess.php');
+require('view/adminAccess.php');
  ?>
 
 <div class="col-10 m-auto h-100 p-5 d-flex flex-column  animated fadeIn">
@@ -34,4 +33,4 @@ require('adminAccess.php');
 </div>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('view/template.php'); ?>

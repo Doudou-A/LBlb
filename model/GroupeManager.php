@@ -63,6 +63,20 @@ class GroupeManager
 		return $groupespublish;
 	}
 
+	public function getByAssociation(Association $association)
+	{
+		$query = $this->_db->prepare('SELECT * FROM groupes WHERE gid = :gid');
+		$query->bindValue(':gid', $association->gid(), PDO::PARAM_INT);
+		$query->execute();
+		$data = $query->fetch(\PDO::FETCH_ASSOC);
+
+
+		$groupe = new Groupe($data);
+
+
+		return $groupe;
+	}
+
 	public function update(Groupe $groupes)
 	{
 		$query = $this->_db->prepare('UPDATE groupes SET gid = :gid, pid = :pid WHERE gid = :gid');

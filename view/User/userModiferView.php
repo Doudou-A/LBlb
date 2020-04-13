@@ -5,7 +5,7 @@ if($_SESSION['uid'] != $_GET['id'])
 {
 	header("Location : index.php?action=administratorGetView");
 }
-require('adminAccess.php');
+require('view/userAccess.php');
 ?>
 <div class="h-100 m-auto h-100 p-5 d-flex flex-column animated fadeIn">
 	<h2>Modifier son profil</h1>
@@ -49,4 +49,4 @@ require('adminAccess.php');
 <?php endif ?>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('view/template.php'); ?>

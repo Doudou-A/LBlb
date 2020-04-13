@@ -1,6 +1,7 @@
 <?php
 ob_start();
 session_start();
+require('view/adminAccess.php');
 ?>
 <div class="h-100 m-auto h-100 p-5 d-flex flex-column animated fadeIn">
     <h2>Modifier une demande</h1>
@@ -29,4 +30,4 @@ session_start();
 </div>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('view/template.php'); ?>

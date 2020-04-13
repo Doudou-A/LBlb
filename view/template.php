@@ -13,9 +13,19 @@
 </head>
 
 <body>
-	<?php if (isset($_SESSION['firstName'])) : ?>
-		Utilisateur : <?= $_SESSION['name'] ?> <?= $_SESSION['firstName'] ?>
-	<?php endif ?>
+	<nav>
+		<a class="btn mx-auto my-auto col-2" href="index.php?action=dashboard"> Dashboard </a>
+		<?php if (isset($_SESSION['prenom'])) : ?>
+			Utilisateur : <?= $_SESSION['name'] ?> <?= $_SESSION['prenom'] ?> <?= $_SESSION['role'] ?>
+		<?php endif ?>
+		<?php if (!isset($_SESSION['prenom'])) : ?>
+			<a class="btn my-2 my-sm-0 text-white" href="index.php?action=connexionView">connexion</a> 
+			<a class="btn my-2 my-sm-0 text-white" href="index.php?action=inscriptionView">ّInscription</a>
+		<?php else : ?>
+		<a class="btn my-2 my-sm-0 text-white" href="index.php?action=destroy">deconnexion</a>
+		<?php endif ?>
+
+	</nav>
 	<?= $content ?>
 </body>
 

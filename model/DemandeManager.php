@@ -60,6 +60,24 @@ class DemandeManager
 		return $demandespublish;
 	}
 
+	public function getDemandesUser(User $user)
+	{
+		$demandespublish=[];
+
+		$query = $this->_db->prepare('SELECT * FROM demande WHERE uid = :uid');
+		$query->bindValue(':uid', $user->uid(), PDO::PARAM_INT);
+		$query->execute();
+		$data = $query->fetchAll(\PDO::FETCH_ASSOC);
+
+		for ($i=0; $i< count($data); $i++) 
+		{ 
+			$demande = new Demande($data[$i]);
+			array_push($demandespublish, $demande); 
+		} 
+
+		return $demandespublish;
+	}
+
 	public function update(Demande $demandes)
 	{
 		$query = $this->_db->prepare('UPDATE demande SET uid = :uid, source = :source WHERE gid = :gid');

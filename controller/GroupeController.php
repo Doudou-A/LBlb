@@ -13,7 +13,7 @@ class GroupeController
 
 		$groupes = $manager->getGroupes();
 
-		require('view/groupeAllView.php');
+		require('view/Groupe/groupeAllView.php');
 	}
 
     public function ajouterGroupe()
@@ -26,7 +26,7 @@ class GroupeController
 
         $manager->add($groupes);
 
-        header("Location: /index.php?action=ajouterGroupeView");
+        header("Location: /index.php?action=GroupeAll");
         exit;
     }
 
@@ -36,7 +36,7 @@ class GroupeController
 
         $projets = $manager->getProjets();
 
-        require('view/ajouterGroupeView.php');
+        require('view/Groupe/ajouterGroupeView.php');
     }
 
     public function groupeModifier()
@@ -78,7 +78,7 @@ class GroupeController
                 $projet = $managerp->get($updatePid);
                 $projets = $managerp->getProjets();
 
-                require('view/groupeModifierView.php');
+                require('view/Groupe/groupeModifierView.php');
             }
         } else {
             throw new Exception("Error Processing Request");

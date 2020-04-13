@@ -8,11 +8,11 @@ class ProjetManager
 	private $_db;
 
 	public function __construct()
-  	{
-    	$this->setDb(DbConfig::dbConnect());
- 	}
+	{
+		$this->setDb(DbConfig::dbConnect());
+	}
 
- 	//Ajouter un Utilisateur
+	//Ajouter un Utilisateur
 	public function add(Projet $projets)
 	{
 		$query = $this->_db->prepare('INSERT INTO projets(titre, description, tailleGroupe, dateDebut, dateFin) VALUES(:titre, :description, :tailleGroupe, :dateDebut, :dateFin)');
@@ -20,12 +20,12 @@ class ProjetManager
 		$query->bindValue(':titre', $projets->titre(), PDO::PARAM_STR);
 		$query->bindValue(':description', $projets->description(), PDO::PARAM_STR);
 		$query->bindValue(':tailleGroupe', $projets->tailleGroupe(), PDO::PARAM_INT);
-		$query->bindValue(':dateDebut',$projets->dateDebut());
-        $query->bindValue(':dateFin', $projets->dateFin());
+		$query->bindValue(':dateDebut', $projets->dateDebut());
+		$query->bindValue(':dateFin', $projets->dateFin());
 
 		$query->execute();
 	}
-	
+
 	public function get($id)
 	{
 		$id = (int) $id;
@@ -40,16 +40,15 @@ class ProjetManager
 
 	public function getProjets()
 	{
-		$projetspublish=[];
+		$projetspublish = [];
 
 		$query = $this->_db->query('SELECT * FROM projets');
 		$data = $query->fetchAll(\PDO::FETCH_ASSOC);
 
-		for ($i=0; $i< count($data); $i++) 
-		{ 
+		for ($i = 0; $i < count($data); $i++) {
 			$projet = new Projet($data[$i]);
-			array_push($projetspublish, $projet); 
-		} 
+			array_push($projetspublish, $projet);
+		}
 
 		return $projetspublish;
 	}
@@ -62,8 +61,8 @@ class ProjetManager
 		$query->bindValue(':titre', $projets->titre(), PDO::PARAM_STR);
 		$query->bindValue(':description', $projets->description(), PDO::PARAM_STR);
 		$query->bindValue(':tailleGroupe', $projets->tailleGroupe(), PDO::PARAM_INT);
-		$query->bindValue(':dateDebut',$projets->dateDebut());
-        $query->bindValue(':dateFin', $projets->dateFin());
+		$query->bindValue(':dateDebut', $projets->dateDebut());
+		$query->bindValue(':dateFin', $projets->dateFin());
 
 		$query->execute();
 	}

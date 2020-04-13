@@ -30,12 +30,7 @@ class Affectation
 
 	public function setGid($gid)
 	{
-		$gid = (int) $gid;
-
-		if ($gid >0)
-		{
-			$this->_gid = $gid;
-		}
+		$this->_gid = $gid;
 	}
 
 	public function setCid($cid)

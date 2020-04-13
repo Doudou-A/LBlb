@@ -1,6 +1,7 @@
 <?php
 ob_start();
 session_start();
+require('view/adminAccess.php');
 ?>
 <div class="h-100 m-auto h-100 p-5 d-flex flex-column animated fadeIn">
     <h2>Modifier un groupe</h1>
@@ -13,8 +14,9 @@ session_start();
                     <?php endforeach ?>
                 </select>
                 <input class="btn border-secondary col-6 offset-3 mt-4 animated fadeInRight rounded text-white" type="submit" name="valide" value="Valider">
+            </div>
         </form>
 </div>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('view/template.php'); ?>

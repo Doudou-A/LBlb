@@ -49,7 +49,7 @@ class SecurityController
 	
 	public function connexionView()
 	{
-		require('view/connexionView.php');
+		require('view/Security/connexionView.php');
 	}
 
 	public function dashboard()
@@ -106,7 +106,7 @@ class SecurityController
 	//Formulaire inscription
 	public function inscriptionView()
 	{
-		require('view/InscriptionView.php');
+		require('view/View/InscriptionView.php');
 	}
 
 	//Page d'Accueil

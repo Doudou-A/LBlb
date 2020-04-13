@@ -3,13 +3,12 @@
 <?php
 ob_start();
 session_start();
-echo ($_SESSION['prenom']);
-require('adminAccess.php');
+require('view/userAccess.php');
 ?>
 
 <div class="col-10 m-auto h-100 p-5 d-flex flex-column  animated fadeIn">
     <?= $_SESSION['role'] ?>
-    <h2>Creer une Association</h2>
+    <h2>Creer une Demande</h2>
     <form action="index.php?action=creerDemande" id="formRegistration" method="POST">
         <div class="row col-12 p-0 m-0">
             <div class="row p-0 m-0 col-12">
@@ -41,4 +40,4 @@ require('adminAccess.php');
 </div>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('view/template.php'); ?>

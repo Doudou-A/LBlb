@@ -3,9 +3,11 @@
 <?php
 ob_start();
 session_start();
+require('view/adminAccess.php');
 //Vue de tous les demandes
 ?>
 <div class="container-fluid min-h-100 p-5 grey lighten-3">
+<a class="btn mx-auto my-auto col-4" href="index.php?action=creerDemandeView"> Faire une Demande </a>
 	<h2 class="border-bottom col-12 animated fadeInLeft">Toutes les Demandes</h2>
 	<div class="d-flex justify-content-around flex-wrap">
 		<?php foreach ($demandes as $key => $demande) : ?>
@@ -34,4 +36,4 @@ session_start();
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('view/template.php'); ?>

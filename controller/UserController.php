@@ -7,6 +7,28 @@ spl_autoload_register(function ($class_name) {
 
 class UserController 
 {
+
+	public function userAll()
+	{
+		$manager = new UserManager();
+
+		$users = $manager->getUsers();
+
+		require('view/User/userAllView.php');
+	}
+
+	public function userProfil()
+	{
+		session_start();
+
+		$id = $_SESSION['uid'];
+		$manager = new UserManager();
+
+		$user = $manager->get($id);
+
+		require('view/User/userProfilView.php');
+	}
+
 	public function userSuppr()
 	{
 		session_start();
@@ -21,14 +43,14 @@ class UserController
 
 			$manager->delete($user);
 
-			header("Location: index.php?action=indexView");
+			header("Location: index.php?action=userAll");
 			exit;
 		}
 		else
 		{
             echo('pb');
             die;
-			header("Location: index.php?action=indexView");
+			header("Location: index.php?action=dashboard");
 			exit;
 		}
 	}
@@ -88,7 +110,7 @@ class UserController
 
 			$manager->updateNoMdp($user);
 
-			header("Location: index.php?action=indexView");
+			header("Location: index.php?action=dashboard");
 			exit;
 
 		}
@@ -108,7 +130,7 @@ class UserController
 			$updateNom = $user->nom();
 			$updatePrenom = $user->prenom();
 
-			require('view/userModiferView.php');
+			require('view/User/userModiferView.php');
 
 		}
 		else
