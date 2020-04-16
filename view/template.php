@@ -16,7 +16,7 @@
 	<nav>
 		<a class="btn mx-auto my-auto col-2" href="index.php?action=dashboard"> Dashboard </a>
 		<?php if (isset($_SESSION['prenom'])) : ?>
-			Utilisateur : <?= $_SESSION['name'] ?> <?= $_SESSION['prenom'] ?> <?= $_SESSION['role'] ?>
+			Utilisateur : <?= $_SESSION['nom'] ?> <?= $_SESSION['prenom'] ?> <?= $_SESSION['role'] ?>
 		<?php endif ?>
 		<?php if (!isset($_SESSION['prenom'])) : ?>
 			<a class="btn my-2 my-sm-0 text-white" href="index.php?action=connexionView">connexion</a> 

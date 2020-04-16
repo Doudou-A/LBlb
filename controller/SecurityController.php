@@ -106,7 +106,7 @@ class SecurityController
 	//Formulaire inscription
 	public function inscriptionView()
 	{
-		require('view/View/InscriptionView.php');
+		require('view/Security/InscriptionView.php');
 	}
 
 	//Page d'Accueil

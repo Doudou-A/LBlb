@@ -1,7 +1,7 @@
 <?php 
 ob_start();
 session_start(); 
-require('userAccess.php')?>
+require('userAccess.php');?>
 
 <?php if (isset($_SESSION['prenom'])) {?>
 	<h3><?= $_SESSION['role']?> <?=$_SESSION['nom']?> <?=$_SESSION['prenom']?></h3>;

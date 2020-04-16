@@ -80,7 +80,7 @@ class DemandeManager
 
 	public function update(Demande $demandes)
 	{
-		$query = $this->_db->prepare('UPDATE demande SET uid = :uid, source = :source WHERE gid = :gid');
+		$query = $this->_db->prepare('UPDATE demande SET gid = :gid, uid = :uid, source = :source WHERE gid = :gid');
 
 		$query->bindValue(':gid', $demandes->gid(), PDO::PARAM_INT);
 		$query->bindValue(':uid', $demandes->uid(), PDO::PARAM_INT);

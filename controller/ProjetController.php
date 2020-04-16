@@ -34,7 +34,7 @@ class ProjetController
 
             $manager->add($projets);
 
-            header("Location: /index.php?action=projetGetView");
+            header("Location: /index.php?action=projetAll");
             exit;
         }
     }
