@@ -13,7 +13,7 @@
 </head>
 
 <body>
-	<nav>
+	<nav class="bg-primary">
 		<a class="btn mx-auto my-auto col-2" href="index.php?action=dashboard"> Dashboard </a>
 		<?php if (isset($_SESSION['prenom'])) : ?>
 			Utilisateur : <?= $_SESSION['nom'] ?> <?= $_SESSION['prenom'] ?> <?= $_SESSION['role'] ?>
@@ -24,7 +24,6 @@
 		<?php else : ?>
 		<a class="btn my-2 my-sm-0 text-white" href="index.php?action=destroy">deconnexion</a>
 		<?php endif ?>
-
 	</nav>
 	<?= $content ?>
 </body>
