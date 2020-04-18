@@ -1,4 +1,4 @@
-<?php $title = 'MyBlog'; ?>
+<?php $title = 'Mon site'; ?>
 
 <?php
 ob_start();
@@ -21,23 +21,28 @@ require('view/userAccess.php');
 					<div class=" font-weight-bold">
 						<?= $projet->titre(); ?>
 					</div>
-					<div class="text-danger text-left">
+					<div class="text-success text-left">
 						Du <?= $projet->dateDebut(); ?> au <?= $projet->dateFin(); ?>
 					</div>
 				</div>
 				<div class="col-md-12 border border-green white p-2 text-justify">
 					<?= $projet->description(); ?>
 				</div>
-				<a class="btn text-danger bg-primary col-6 offset-3" href="index.php?action=projetFullView&amp;id=<?= $projet->pid(); ?>">Voir le Projet en détail</a>
+				<a class="btn my-2 my-sm-0 text-success" href="index.php?action=projetFullView&amp;id=<?= $projet->pid(); ?>">Voir le Projet en détail</a>
 				<?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') : ?>
 					<div class="col-md-5 text-center p-2 border border-green rounded aqua-gradient white ">
-						<a class="btn my-2 my-sm-0 text-danger" href="index.php?action=projetModifierView&amp;id=<?= $projet->pid(); ?>">Modifier</a>
+						<a class="btn my-2 my-sm-0 text-success" href="index.php?action=projetModifierView&amp;id=<?= $projet->pid(); ?>">Modifier</a>
 					</div>
 				<?php endif ?>
 			</div>
 		<?php endforeach  ?>
 	</div>
 </div>
+<?php if (isset($_GET['alert']) && $_GET['alert'] == 1) : ?>
+	<script type="text/javascript">
+		alert("Le Commentaire est en attente de Validation !");
+	</script>
+<?php endif ?>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('view/template.php'); ?>

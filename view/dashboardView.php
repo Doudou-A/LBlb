@@ -1,7 +1,7 @@
 <?php 
 ob_start();
 session_start(); 
-require('userAccess.php');?>
+require('userAccess.php')?>
 
 <?php if (isset($_SESSION['prenom'])) {?>
 	<h3><?= $_SESSION['role']?> <?=$_SESSION['nom']?> <?=$_SESSION['prenom']?></h3>;
@@ -16,7 +16,7 @@ require('userAccess.php');?>
 <a class="btn my-2 my-sm-0 text-success" href="index.php?action=associationAll">Gérer les Associations</a>
 <a class="btn my-2 my-sm-0 text-success" href="index.php?action=affectationAll">Gérer les Affectations</a>
 <?php else : ?>
-	<a class="btn my-2 my-sm-0 text-success" href="index.php?action=projetUser">ّSon Projets</a>
+	<a class="btn my-2 my-sm-0 text-success" href="index.php?action=projetUser">ّSon Projet</a>
 	<a class="btn my-2 my-sm-0 text-success" href="index.php?action=projetAll">ّTous les Projets</a>
 	<a class="btn my-2 my-sm-0 text-success" href="index.php?action=demandesUser">Les Demandes</a>
 	<a class="btn my-2 my-sm-0 text-success" href="index.php?action=userProfil">Profil</a>

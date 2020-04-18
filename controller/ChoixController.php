@@ -26,7 +26,7 @@ class ChoixController
 
         $manager->add($choix);
 
-        header("Location: /index.php?action=choixAll");
+        header("Location: /index.php?action=ajouterChoix");
         exit;
     }
 

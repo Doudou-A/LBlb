@@ -1,4 +1,4 @@
-<?php $title = 'Liza'; ?>
+<?php $title = 'web projet'; ?>
 
 <?php
 ob_start();

@@ -1,4 +1,4 @@
-<?php $title = 'Liza Belabas Projet'; ?>
+<?php $title = 'web Projet'; ?>
 
 <?php ob_start(); ?>
 <div class="col-10 m-auto h-100 p-5 d-flex flex-column  animated fadeIn">

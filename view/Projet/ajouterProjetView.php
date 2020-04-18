@@ -1,3 +1,5 @@
+<?php $title = 'web Projet'; ?>
+
 <?php ob_start();
 session_start();
 require('view/adminAccess.php'); ?>
