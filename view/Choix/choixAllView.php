@@ -8,7 +8,7 @@ require('view/adminAccess.php');
 ?>
 <div class="container-fluid min-h-100 p-5 grey lighten-3">
 	<h2 class="border-bottom col-12 animated fadeInLeft">Tous les choix</h2>
-	<a class="btn mx-auto my-auto col-4" href="index.php?action=ajouterchoix"> Ajouter un Choix </a>
+	<a class="btn mx-auto my-auto col-4" href="index.php?action=ajouterChoixView"> Ajouter un Choix </a>
 	<div class="d-flex justify-content-around flex-wrap">
 		<?php foreach ($achoix as $key => $choix) : ?>
 			<div class="col-md-3 m-1 mt-5 animated fadeInDown">

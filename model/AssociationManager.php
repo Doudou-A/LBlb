@@ -26,7 +26,7 @@ class AssociationManager
 	public function delete(Association $association)
 	{
 		$query = $this->_db->prepare('DELETE FROM association WHERE gid = :gid');
-		$query->bindValue(':gid' , $association->gid(), PDO::PARAM_INT);
+		$query->bindValue(':gid' , $association->gid()->gid(), PDO::PARAM_INT);
 		$query->execute();
 	}
 
@@ -75,7 +75,9 @@ class AssociationManager
 		$query->execute();
 		$data = $query->fetch(\PDO::FETCH_ASSOC);
 
-
+		if($data == false)
+		return null;
+		
 		$association = new Association($data);
 
 

@@ -9,21 +9,16 @@ require('view/adminAccess.php');
 <div class="col-10 m-auto h-100 p-5 d-flex flex-column  animated fadeIn">
     <?= $_SESSION['role'] ?>
     <h2>Creer un choix</h2>
-    <form action="index.php?action=creerDemande" id="formRegistration" method="POST">
+    <form action="index.php?action=ajouterChoix" id="formRegistration" method="POST">
         <div class="row col-12 p-0 m-0">
             <div class="row p-0 m-0 col-12">
-                <label class="col-lg-12 mt-4 animated fadeInRight">Groupes :</label>
-                <select id="monselect" class="col-lg-12 p-2 border animated fadeInLeft" name="gid">
-                    <?php foreach ($groupes as $key => $groupe) : ?>
-                        <option value="<?= $groupe->gid(); ?>"> N°<?= $groupe->gid(); ?> projet=><?= $groupe->pid()->titre(); ?></option>
-                    <?php endforeach ?>
-                </select>
+                <label class="col-lg-12 mt-4 animated fadeInRight">Nom</label> <input class="col-lg-12 p-2 animated fadeInLeft border" type="text" name="nom" required="required" />
             </div>
             <div class="row p-0 m-0 col-12">
                 <label class="col-lg-12 mt-4 animated fadeInRight">Projets :</label>
                 <select id="monselect" class="col-lg-12 p-2 border animated fadeInLeft" name="pid">
-                    <?php foreach ($users as $key => $user) : ?>
-                        <option value="<?= $user->pid(); ?>"><?= $user->nom(); ?> <?= $user->prenom(); ?> / <?= $user->login(); ?></option>
+                    <?php foreach ($projets as $key => $projet) : ?>
+                        <option value="<?= $projet->pid(); ?>"><?= $projet->titre(); ?> <?= $projet->dateDebut(); ?> / <?= $projet->dateFin(); ?></option>
                     <?php endforeach ?>
                 </select>
             </div>

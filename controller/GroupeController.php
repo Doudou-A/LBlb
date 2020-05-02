@@ -69,17 +69,15 @@ class GroupeController
             $manager = new GroupeManager();
 
             $groupe = $manager->get($_GET['id']);
-            
-            if ($_SESSION['role'] != 'admin') {
-                $updateGid = $groupe->gid();
-                $updatePid = $groupe->pid();
 
-                $managerp = new ProjetManager();
-                $projet = $managerp->get($updatePid);
-                $projets = $managerp->getProjets();
+            $updateGid = $groupe->gid();
+            $updatePid = $groupe->pid()->pid();
+
+            $managerp = new ProjetManager();
+            $projet = $managerp->get($updatePid);
+            $projets = $managerp->getProjets();
 
                 require('view/Groupe/groupeModifierView.php');
-            }
         } else {
             throw new Exception("Error Processing Request");
         }

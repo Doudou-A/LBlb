@@ -2,7 +2,9 @@
 
 <?php
 ob_start();
-session_start();
+if(!isset($_SESSION)){
+    session_start();
+}
 require('view/userAccess.php');
 //Vue d'un article
 ?>
@@ -11,7 +13,7 @@ require('view/userAccess.php');
         <?php if ($_SESSION['role'] == 'admin') : ?>
             <a class="btn mx-auto my-auto col-4" href="index.php?action=projetAll"> Liste des Projets </a>
         <?php endif ?>
-        <?php if ($projet->pid() == null) : ?>
+        <?php if (isset($association) && $association == null) : ?>
             <div>Vous n'avez été affecté a aucun projet, veuillez contacter un administrateur</div>
         <?php else :  ?>
             <h2 class="text-center border-bottom border-secondary p-2 animated zoomIn">Projet N°<?= $projet->pid(); ?> <?= $projet->titre(); ?></h2>
@@ -22,22 +24,24 @@ require('view/userAccess.php');
             <div class="p-3 text-success">
                 Du <?= $projet->dateDebut(); ?> Au <?= $projet->dateFin(); ?>
             </div>
-            <div class="mt-5">
-                <div style="display: none;" id="comments">
-                    <?php foreach ($commentsprojetost as $key => $commentprojetost) : ?>
-                        <div class="col-lg-8 offset-lg-2 d-flex flex-wrap border p-3 mt-1 animated zoomIn">
-                            <div class="col-lg-12 border border-white  font-weight-bold">
-                                <?= htmlspecialchars($commentprojetost->pseudo()); ?>
+            <?php if (isset($commentprojetost)) : ?>
+                <div class="mt-5">
+                    <div style="display: none;" id="comments">
+                        <?php foreach ($commentsprojetost as $key => $commentprojetost) : ?>
+                            <div class="col-lg-8 offset-lg-2 d-flex flex-wrap border p-3 mt-1 animated zoomIn">
+                                <div class="col-lg-12 border border-white  font-weight-bold">
+                                    <?= htmlspecialchars($commentprojetost->pseudo()); ?>
+                                </div>
+                                <div class="col-lg-12 border border-white ">
+                                    <?php
+                                    $date = DateTime::createFromFormat('Y-m-d H:i:s', $commentprojetost->dateCreated());
+                                    ?>
+                                </div>
                             </div>
-                            <div class="col-lg-12 border border-white ">
-                                <?php
-                                $date = DateTime::createFromFormat('Y-m-d H:i:s', $commentprojetost->dateCreated());
-                                ?>
-                            </div>
-                        </div>
-                    <?php endforeach ?>
+                        <?php endforeach ?>
+                    </div>
                 </div>
-            </div>
+            <?php endif ?>
         <?php endif ?>
     </div>
 </div>

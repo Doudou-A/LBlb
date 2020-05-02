@@ -26,17 +26,14 @@ class ChoixController
 
         $manager->add($choix);
 
-        header("Location: /index.php?action=ajouterChoix");
+        header("Location: /index.php?action=choixAll");
         exit;
     }
 
     public function ajouterChoixView()
     {
-        $managerG = new GroupeManager;
-        $managerP = new ProjetManager;
-
-        $groupes = $managerG->getgroupes();
-        $projets = $managerP->getProjets();
+        $manager = new ProjetManager;
+        $projets = $manager->getProjets();
         
         require('view/Choix/ajouterChoixView.php');
     }
@@ -73,17 +70,16 @@ class ChoixController
 
             $choix = $manager->get($_GET['id']);
             
-            if ($_SESSION['role'] != 'admin') {
-                $updateGid = $choix->cid();
-                $updateNom = $choix->nom();
-                $updatePid = $choix->pid();
+            $updateGid = $choix->cid();
+            $updateNom = $choix->nom();
+            $updatePid = $choix->pid()->pid();
 
-                $managerp = new ProjetManager();
-                $projet = $managerp->get($updatePid);
-                $projets = $managerp->getProjets();
+            $managerp = new ProjetManager();
+            $projet = $managerp->get($updatePid);
+            $projets = $managerp->getProjets();
 
-                require('view/Choix/choixModifierView.php');
-            }
+            require('view/Choix/choixModifierView.php');
+
         } else {
             throw new Exception("Error Processing Request");
         }

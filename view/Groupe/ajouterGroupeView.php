@@ -5,7 +5,7 @@ session_start();
 require('view/adminAccess.php'); ?>
 
 <div class="col-10 m-auto h-100 p-5 d-flex flex-column  animated fadeIn">
-	<h2>Ajouter un Groupe à partir d'un projet existant</h1>
+	<h2>Ajouter un Groupe à partir d'un projet existant</h2>
 		<form action="index.php?action=ajouterGroupe" id="formRegistration" method="POST">
 			<div class="row col-12 p-0 m-0">
 				<div class="row p-0 m-0 col-12">

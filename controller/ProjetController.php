@@ -116,8 +116,11 @@ class ProjetController
 
         $user = $userManager->get($uid);
         $association = $associationManager->getByUser($user);
-        $groupe = $groupeManager->getByAssociation($association);
-        $projet = $projetManager->get($groupe->pid());
+        
+        if($association != null){
+            $groupe = $groupeManager->getByAssociation($association);
+            $projet = $projetManager->get($groupe->pid());
+        }
         
         require('view/Projet/projetFullView.php');
     }

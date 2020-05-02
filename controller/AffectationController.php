@@ -71,21 +71,20 @@ class AffectationController
             $manager = new AffectationManager();
 
             $affectation = $manager->get($_GET['id']);
+        
+            $updateGid = $affectation->gid()->gid();
+            $updateCid = $affectation->cid()->cid();
+
+            $managerG = new GroupeManager();
+            $groupe = $managerG->get($updateGid);
+            $groupes = $managerG->getGroupes();
             
-            if ($_SESSION['role'] != 'admin') {
-                $updateGid = $affectation->gid()->gid();
-                $updateCid = $affectation->cid()->cid();
+            $managerC = new ChoixManager();
+            $choix = $managerC->get($updateCid);
+            $achoix = $managerC->getChoix();
 
-                $managerG = new GroupeManager();
-                $groupe = $managerG->get($updateGid);
-                $groupes = $managerG->getGroupes();
-                
-                $managerC = new ChoixManager();
-                $choix = $managerC->get($updateCid);
-                $achoix = $managerC->getChoix();
-
-                require('view/Affectation/affectationModifierView.php');
-            }
+            require('view/Affectation/affectationModifierView.php');
+        
         } else {
             throw new Exception("Error Processing Request");
         }

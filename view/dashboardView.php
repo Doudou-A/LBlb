@@ -3,10 +3,7 @@ ob_start();
 session_start(); 
 require('userAccess.php')?>
 
-<?php if (isset($_SESSION['prenom'])) {?>
-	<h3><?= $_SESSION['role']?> <?=$_SESSION['nom']?> <?=$_SESSION['prenom']?></h3>;
-<?php } ?>
-<!-- POur administrateur uniquement -->
+<!-- Pour administrateur uniquement -->
 <?php if ($_SESSION['role'] == 'admin') : ?>
 <a class="btn my-2 my-sm-0 text-success" href="index.php?action=projetAll">ّGérer les Projets</a>
 <a class="btn my-2 my-sm-0 text-success" href="index.php?action=groupeAll">Gérer les Groupes</a>

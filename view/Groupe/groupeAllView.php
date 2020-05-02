@@ -7,7 +7,7 @@ session_start();
 ?>
 <div class="container-fluid min-h-100 p-5 grey lighten-3">
 	<h2 class="border-bottom col-12 animated fadeInLeft">Tous les groupes</h2>
-	<a class="btn mx-auto my-auto col-4" href="index.php?action=ajouterGroupe"> Ajouter un Groupe </a>
+	<a class="btn mx-auto my-auto col-4" href="index.php?action=ajouterGroupeView"> Ajouter un Groupe </a>
 	<div class="d-flex justify-content-around flex-wrap">
 		<?php foreach ($groupes as $key => $groupe) : ?>
 			<div class="col-md-3 m-1 mt-5 animated fadeInDown">
