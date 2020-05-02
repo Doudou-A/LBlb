@@ -13,7 +13,7 @@ require('view/userAccess.php');
         <?php if ($_SESSION['role'] == 'admin') : ?>
             <a class="btn mx-auto my-auto col-4" href="index.php?action=projetAll"> Liste des Projets </a>
         <?php endif ?>
-        <?php if (isset($association) && $association == null) : ?>
+        <?php if ($association == null) : ?>
             <div>Vous n'avez été affecté a aucun projet, veuillez contacter un administrateur</div>
         <?php else :  ?>
             <h2 class="text-center border-bottom border-secondary p-2 animated zoomIn">Projet N°<?= $projet->pid(); ?> <?= $projet->titre(); ?></h2>
