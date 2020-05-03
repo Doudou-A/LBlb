@@ -50,6 +50,7 @@ class ProjetController
             $id = $_GET['id'];
             $manager = new projetManager();
 
+            $association = 1;
             $projet = $manager->get($id);
 
             require('view/Projet/projetFullView.php');
